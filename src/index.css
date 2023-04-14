@@ -14,3 +14,10 @@ h1 {
 h2 {
   text-align: center;
 }
+
+.click-me {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}

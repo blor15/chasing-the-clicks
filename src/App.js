@@ -1,7 +1,14 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const storedCounts = Number(localStorage.getItem("counter"));
+  const [counter, setCounter] = useState(
+    Number.isInteger(storedCounts) ? storedCounts : 0
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("counter", counter);
+  }, [counter]);
 
   const increase = () => {
     setCounter((count) => count + 1);
@@ -11,7 +18,7 @@ function App() {
     <div className="counter">
       <h1>Chasing The Clicks</h1>
       <h2>{counter}</h2>
-      <div className="clicker">
+      <div className="click-me">
         <button onClick={increase}>Click Me</button>
       </div>
     </div>
